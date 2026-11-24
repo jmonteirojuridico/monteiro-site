@@ -9,6 +9,7 @@ Cabeçalho, menu, rodapé e ícones ficam aqui, num lugar só.
 Uso (na raiz do repositório):  python3 _build/build.py
 A pasta _build não é publicada pelo GitHub Pages.
 """
+import hashlib
 import json
 import pathlib
 import re
@@ -85,7 +86,7 @@ LAYOUT = """<!doctype html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v={css_version}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Monteiro Advogados">
@@ -148,6 +149,11 @@ LAYOUT = """<!doctype html>
 """
 
 
+# Muda sempre que o style.css muda: obriga o navegador a baixar o estilo novo
+# em vez de usar a cópia antiga guardada (cache).
+CSS_VERSION = hashlib.sha1((ROOT / "assets" / "css" / "style.css").read_bytes()).hexdigest()[:8]
+
+
 def esc(s):
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
 
@@ -184,6 +190,7 @@ def build_page(src):
         agende=esc(agende(area)),
         body=body,
         scripts=scripts,
+        css_version=CSS_VERSION,
     )
     out = ROOT / meta["out"] if "out" in meta else ROOT / path.strip("/") / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
