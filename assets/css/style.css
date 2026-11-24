@@ -1,0 +1,205 @@
+/* Monteiro Advogados — estilos do site */
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("../fonts/cormorant-garamond.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #151416;
+  --bg-raised: #1d1c1f;
+  --line: #2e2c30;
+  --text: #f2efea;
+  --text-soft: #b9b4ad;
+  --accent: #d2232a;
+  --accent-hover: #e0353c;
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --wrap: 68rem;
+  --radius: 4px;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; }
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { color: #fff; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 1.25rem; }
+
+.skip {
+  position: absolute; left: -999px; top: 0;
+  background: var(--accent); color: #fff; padding: 0.5rem 1rem; z-index: 10;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+
+/* ---------- Cabeçalho ---------- */
+.site-header { border-bottom: 1px solid var(--line); }
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; min-height: 4.5rem;
+}
+.brand { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+.brand img { width: 3.1rem; height: auto; }
+.brand span {
+  font-family: var(--serif); font-size: 1.45rem; font-weight: 600;
+  letter-spacing: 0.02em; line-height: 1;
+}
+
+/* ---------- Tipografia ---------- */
+h1, h2, h3 {
+  font-family: var(--serif); font-weight: 600; line-height: 1.15;
+  letter-spacing: 0.01em; margin: 0 0 0.75rem;
+}
+h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); }
+h2 { font-size: clamp(1.7rem, 4.5vw, 2.2rem); }
+h3 { font-size: 1.4rem; }
+
+.eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); margin: 0 0 0.75rem;
+}
+.eyebrow::before {
+  content: ""; display: inline-block; width: 1.75rem; height: 2px;
+  background: var(--accent); vertical-align: middle; margin-right: 0.65rem;
+}
+
+.lead { color: var(--text-soft); font-size: 1.05rem; max-width: 38rem; margin: 0; }
+
+.section { padding: 3rem 0; }
+.section + .section { border-top: 1px solid var(--line); }
+.hero { padding: 3rem 0 2.5rem; }
+
+/* ---------- Botões ---------- */
+.actions { display: grid; gap: 0.75rem; margin-top: 2rem; max-width: 34rem; }
+
+.btn {
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.95rem 1.15rem; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--bg-raised);
+  color: var(--text); text-decoration: none; font-weight: 500;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.btn:hover { border-color: var(--accent); color: var(--text); }
+.btn svg { width: 1.4rem; height: 1.4rem; flex: none; }
+.btn small { display: block; color: var(--text-soft); font-size: 0.8rem; font-weight: 400; line-height: 1.4; }
+.btn strong { display: block; font-weight: 600; line-height: 1.35; }
+
+.btn-primary {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  justify-content: center; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; font-size: 0.9rem; padding: 1.05rem 1.15rem;
+}
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+
+/* Botão contornado (WhatsApp nos cartões): visível, mas abaixo do botão principal */
+.btn-outline {
+  justify-content: center;
+  background: transparent; border-color: var(--accent);
+  font-weight: 600; font-size: 0.9rem; padding: 0.75rem 1rem;
+}
+/* Alinha os botões dos cartões lado a lado no computador */
+.card { display: flex; flex-direction: column; }
+.card .btn-outline { margin-top: auto; }
+.card .info:not(:last-child) { margin-bottom: 1.25rem; }
+.btn-outline svg { width: 1.2rem; height: 1.2rem; color: var(--accent); }
+.btn-outline:hover { background: var(--accent); color: #fff; }
+.btn-outline:hover svg { color: #fff; }
+
+/* ---------- Dados de contato ---------- */
+.grid { display: grid; gap: 1rem; }
+@media (min-width: 40rem) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+.card {
+  background: var(--bg-raised); border: 1px solid var(--line);
+  border-top: 2px solid var(--accent); border-radius: var(--radius);
+  padding: 1.4rem 1.35rem;
+}
+.card h3 { margin-bottom: 0.15rem; }
+.card .role { color: var(--text-soft); font-size: 0.85rem; margin: 0 0 1rem; }
+
+.info { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
+.info li { display: flex; gap: 0.7rem; align-items: flex-start; overflow-wrap: anywhere; }
+.info svg { width: 1.1rem; height: 1.1rem; flex: none; margin-top: 0.25rem; color: var(--accent); }
+
+.place { display: grid; gap: 2rem; }
+@media (min-width: 52rem) { .place { grid-template-columns: 1fr 1.4fr; align-items: start; } }
+
+.place dl { margin: 0; display: grid; gap: 1.25rem; }
+.place dt {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-soft); margin-bottom: 0.2rem;
+}
+.place dd { margin: 0; }
+
+/* Mapa carregado só com o clique (sem cookies de terceiros antes disso) */
+.map {
+  position: relative; aspect-ratio: 4 / 3; width: 100%;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg-raised); overflow: hidden;
+}
+@media (min-width: 52rem) { .map { aspect-ratio: 16 / 11; } }
+.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.map-placeholder {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.9rem;
+  padding: 1.5rem; text-align: center;
+}
+.map-placeholder p { margin: 0; color: var(--text-soft); font-size: 0.85rem; max-width: 22rem; }
+.map-placeholder button {
+  font: inherit; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  background: transparent; color: var(--text);
+  border: 1px solid var(--accent); border-radius: var(--radius);
+  padding: 0.7rem 1.2rem;
+}
+.map-placeholder button:hover { background: var(--accent); color: #fff; }
+
+/* ---------- Texto corrido (política) ---------- */
+.prose { max-width: 44rem; }
+.prose h2 { font-size: 1.6rem; margin-top: 2.25rem; }
+.prose p { margin: 0 0 1rem; }
+.prose .updated { color: var(--text-soft); font-size: 0.9rem; margin-top: 2.5rem; }
+
+/* ---------- Rodapé ---------- */
+.site-footer {
+  border-top: 1px solid var(--line); padding: 2rem 0 2.25rem;
+  font-size: 0.85rem; color: var(--text-soft);
+}
+.site-footer p { margin: 0 0 0.35rem; }
+.site-footer a { color: var(--text-soft); }
+.site-footer a:hover { color: var(--text); }
+.site-footer .footer-name { font-family: var(--serif); font-size: 1.2rem; color: var(--text); font-weight: 600; }
+.site-footer .footer-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 0.9rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
