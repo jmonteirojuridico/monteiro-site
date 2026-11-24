@@ -15,11 +15,20 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Monteiro Advogados">
 <meta property="og:title" content="Equipe | Monteiro Advogados">
-<meta property="og:description" content="Conheça a equipe do Monteiro Advogados, em Jundiaí/SP.">
+<meta property="og:description" content="Conheça a equipe do Monteiro Advogados, em Jundiaí/SP: Dr. Nivaldo Monteiro, Dra. Glaucia Fernanda Raimundo Barbosa (GFR Advogados) e Júlia Monteiro.">
 <meta property="og:url" content="https://monteirojuridico.adv.br/equipe/">
 </head>
 <body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5Z"/><path d="M9 10h6M9 13.5h4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
 
 <header class="site-header">
   <div class="wrap">
@@ -27,6 +36,21 @@
       <img src="/assets/img/monograma-ma.svg" alt="" width="1020" height="615">
       <span>Monteiro Advogados</span>
     </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      Menu
+    </button>
+    <nav class="site-nav" id="menu" aria-label="Principal">
+      <ul>
+        <li><a href="/">Início</a></li>
+        <li><a href="/o-escritorio/">O escritório</a></li>
+        <li><a href="/equipe/" aria-current="page">Equipe</a></li>
+        <li><a href="/areas-de-atuacao/">Áreas de atuação</a></li>
+        <li><a href="/formas-de-atendimento/">Formas de atendimento</a></li>
+        <li><a href="/contato/">Contato</a></li>
+        <li class="nav-cta-item"><a class="nav-cta" href="https://wa.me/5511999103182?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta.">Agende sua consulta</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -73,5 +97,17 @@
     </p>
   </div>
 </footer>
+
+<script>
+  (function () {
+    var b = document.querySelector(".nav-toggle");
+    var h = document.querySelector(".site-header");
+    b.addEventListener("click", function () {
+      var open = b.getAttribute("aria-expanded") !== "true";
+      b.setAttribute("aria-expanded", String(open));
+      h.classList.toggle("nav-open", open);
+    });
+  })();
+</script>
 </body>
 </html>
