@@ -3,6 +3,8 @@
 
 Cada arquivo de conteúdo começa com uma linha de metadados:
   <!-- {"title": "...", "description": "...", "path": "/pasta/", "nav": "id-do-menu"} -->
+Opções extras: "noindex": true (fora do Google e do sitemap), "bare": true (sem menu
+e sem rodapé), "area": "Nome" (mensagem do botão de agendar), "out": "arquivo.html".
 e depois traz só o miolo da página (o que fica dentro de <main>).
 Cabeçalho, menu, rodapé e ícones ficam aqui, num lugar só.
 
@@ -36,7 +38,7 @@ NAV = [
     ("equipe", "/equipe/", "Equipe"),
     ("areas", "/areas-de-atuacao/", "Áreas de atuação"),
     ("atendimento", "/formas-de-atendimento/", "Formas de atendimento"),
-    ("contato", "/contato/", "Contato"),
+    ("contato", "/fale-conosco/", "Contato"),
 ]
 
 ICONS = """<svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -45,6 +47,7 @@ ICONS = """<svg width="0" height="0" style="position:absolute" aria-hidden="true
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></symbol>
   <symbol id="i-insta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></symbol>
   <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </svg>"""
 
@@ -154,6 +157,18 @@ LAYOUT = """<!doctype html>
 CSS_VERSION = hashlib.sha1((ROOT / "assets" / "css" / "style.css").read_bytes()).hexdigest()[:8]
 
 
+# Página "solta" (sem menu nem rodapé do site), usada na página do QR code.
+BARE_LAYOUT = LAYOUT[: LAYOUT.index("<body>")] + """<body class="bare">
+{icons}
+
+<main id="conteudo">
+{body}
+</main>
+{scripts}</body>
+</html>
+"""
+
+
 def esc(s):
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
 
@@ -177,7 +192,7 @@ def build_page(src):
         for key, href, label in NAV
     )
     path = meta.get("path")
-    html = LAYOUT.format(
+    html = (BARE_LAYOUT if meta.get("bare") else LAYOUT).format(
         title=esc(meta["title"]),
         og_title=esc(meta.get("og_title", meta["title"])),
         description=esc(meta["description"]),

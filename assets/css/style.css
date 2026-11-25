@@ -342,3 +342,22 @@ h3 { font-size: 1.4rem; }
   border: 1px solid var(--line); border-radius: 999px;
 }
 .pill-links a:hover { border-color: var(--accent); }
+
+/* ---------- Página do QR code (/contato) ---------- */
+.links-page {
+  width: 100%; max-width: 28rem; margin: 0 auto;
+  padding: 2.5rem 1.25rem 2rem;
+}
+.links-head { text-align: center; margin-bottom: 1.75rem; }
+.links-head img { width: 5rem; height: auto; margin: 0 auto 1rem; }
+.links-head h1 { font-size: 2.2rem; margin-bottom: 0.25rem; }
+.links-head p { margin: 0; color: var(--text-soft); font-size: 0.9rem; }
+.links-list { display: grid; gap: 0.7rem; }
+.links-list .btn svg { color: var(--accent); }
+.links-list .btn-primary svg { color: #fff; }
+.links-list .btn-outline { margin-top: 0.6rem; padding: 0.9rem 1rem; }
+.links-list .btn-outline:hover svg { color: #fff; }
+.links-foot { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--text-soft); }
+.links-foot p { margin: 0 0 0.35rem; }
+.links-foot a { color: var(--text-soft); }
+.nowrap { white-space: nowrap; }
